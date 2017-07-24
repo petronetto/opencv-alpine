@@ -25,12 +25,15 @@ FROM petronetto/opencv-alpine
 MAINTAINER Juliano Petronetto <juliano.petronetto@gmail.com>
 
 RUN pip --no-cache-dir install 'jupyter' && \
-    mkdir -p /root/.jupyter
+    mkdir -p /root/.jupyter && \
+    mkdir -p /notebooks
 
 RUN echo " \n\
 import warnings \n\
 warnings.filterwarnings('ignore') \n\
 c.NotebookApp.token = u''" >> /root/.jupyter/config.py
+
+WORKDIR /notebooks
 
 EXPOSE 8888
 
